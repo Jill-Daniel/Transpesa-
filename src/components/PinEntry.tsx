@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 
 interface PinEntryProps {
   onPinSubmit: (pin: string) => void;
@@ -16,16 +16,16 @@ const PinEntry: React.FC<PinEntryProps> = ({
   isLoading = false,
 }) => {
   const [pin, setPin] = useState(['', '', '', '']);
-  const inputRefs = [
-    useRef<HTMLInputElement>(null),
-    useRef<HTMLInputElement>(null),
-    useRef<HTMLInputElement>(null),
-    useRef<HTMLInputElement>(null),
-  ];
+  const ref1 = useRef<HTMLInputElement>(null);
+  const ref2 = useRef<HTMLInputElement>(null);
+  const ref3 = useRef<HTMLInputElement>(null);
+  const ref4 = useRef<HTMLInputElement>(null);
+  
+  const inputRefs = useMemo(() => [ref1, ref2, ref3, ref4], []);
 
   useEffect(() => {
     inputRefs[0].current?.focus();
-  }, []);
+  }, [inputRefs]);
 
   const handleChange = (index: number, value: string) => {
     if (value.length > 1) {

@@ -33,24 +33,24 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-mpesa-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-mpesa-50 flex items-center justify-center px-4 safe-area-top safe-area-bottom">
+      <div className="max-w-md w-full space-y-8 animate-scale-in">
         <div className="text-center">
-          <div className="mx-auto h-12 w-12 bg-mpesa-600 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-xl">JA</span>
+          <div className="mx-auto h-16 w-16 bg-mpesa-600 rounded-2xl flex items-center justify-center shadow-lg animate-pulse-slow">
+            <span className="text-white font-bold text-2xl">JA</span>
           </div>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
+          <h1 className="mt-6 text-4xl font-bold text-gray-900">
             Jdan Agencies
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Sign in to your M-Pesa account
+          </h1>
+          <p className="mt-3 text-base text-gray-600">
+            Welcome back! Sign in to your M-Pesa account
           </p>
         </div>
         
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
                 Email address
               </label>
               <input
@@ -58,35 +58,39 @@ const Login: React.FC = () => {
                 name="email"
                 type="email"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                autoComplete="email"
+                className="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base transition-all"
                 value={formData.email}
                 onChange={handleChange}
+                placeholder="Enter your email"
               />
             </div>
             
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
                 Password
               </label>
-              <div className="mt-1 relative">
+              <div className="mt-2 relative">
                 <input
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
                   required
-                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                  autoComplete="current-password"
+                  className="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base transition-all"
                   value={formData.password}
                   onChange={handleChange}
+                  placeholder="Enter your password"
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center touch-ripple"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeSlashIcon className="h-5 w-5 text-gray-400" />
+                    <EyeSlashIcon className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-colors" />
                   ) : (
-                    <EyeIcon className="h-5 w-5 text-gray-400" />
+                    <EyeIcon className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-colors" />
                   )}
                 </button>
               </div>
@@ -94,7 +98,7 @@ const Login: React.FC = () => {
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-4 rounded-xl text-sm font-medium animate-slide-up">
               {error}
             </div>
           )}
@@ -103,16 +107,16 @@ const Login: React.FC = () => {
             <button
               type="submit"
               disabled={state.isLoading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-mpesa-600 hover:bg-mpesa-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mpesa-500 disabled:opacity-50"
+              className="group relative w-full flex justify-center py-4 px-4 border border-transparent text-base font-semibold rounded-xl text-white bg-mpesa-600 hover:bg-mpesa-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mpesa-500 disabled:opacity-50 transition-all duration-200 transform hover:scale-105 touch-ripple shadow-lg"
             >
               {state.isLoading ? 'Signing in...' : 'Sign in'}
             </button>
           </div>
 
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
+          <div className="text-center pt-4">
+            <p className="text-base text-gray-600">
               Don't have an account?{' '}
-              <Link to="/register" className="font-medium text-mpesa-600 hover:text-mpesa-500">
+              <Link to="/register" className="font-semibold text-mpesa-600 hover:text-mpesa-700 transition-colors">
                 Sign up
               </Link>
             </p>

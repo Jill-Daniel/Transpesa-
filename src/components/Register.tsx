@@ -62,24 +62,24 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-mpesa-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-mpesa-50 flex items-center justify-center px-4 safe-area-top safe-area-bottom">
+      <div className="max-w-md w-full space-y-8 animate-scale-in">
         <div className="text-center">
-          <div className="mx-auto h-12 w-12 bg-mpesa-600 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-xl">JA</span>
+          <div className="mx-auto h-16 w-16 bg-mpesa-600 rounded-2xl flex items-center justify-center shadow-lg animate-pulse-slow">
+            <span className="text-white font-bold text-2xl">JA</span>
           </div>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
+          <h1 className="mt-6 text-4xl font-bold text-gray-900">
             Create Account
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Join Jdan Agencies for M-Pesa services
+          </h1>
+          <p className="mt-3 text-base text-gray-600">
+            Join Jdan Agencies for secure M-Pesa services
           </p>
         </div>
         
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-semibold text-gray-700">
                 Full Name
               </label>
               <input
@@ -87,14 +87,16 @@ const Register: React.FC = () => {
                 name="name"
                 type="text"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                autoComplete="name"
+                className="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base transition-all"
                 value={formData.name}
                 onChange={handleChange}
+                placeholder="Enter your full name"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
                 Email address
               </label>
               <input
@@ -102,14 +104,16 @@ const Register: React.FC = () => {
                 name="email"
                 type="email"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                autoComplete="email"
+                className="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base transition-all"
                 value={formData.email}
                 onChange={handleChange}
+                placeholder="Enter your email"
               />
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="phone" className="block text-sm font-semibold text-gray-700">
                 Phone Number
               </label>
               <input
@@ -117,15 +121,16 @@ const Register: React.FC = () => {
                 name="phone"
                 type="tel"
                 required
+                autoComplete="tel"
                 placeholder="+254 XXX XXX XXX"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                className="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base transition-all"
                 value={formData.phone}
                 onChange={handleChange}
               />
             </div>
 
             <div>
-              <label htmlFor="mpesaNumber" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="mpesaNumber" className="block text-sm font-semibold text-gray-700">
                 M-Pesa Number
               </label>
               <input
@@ -134,42 +139,44 @@ const Register: React.FC = () => {
                 type="tel"
                 required
                 placeholder="+254 XXX XXX XXX"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                className="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base transition-all"
                 value={formData.mpesaNumber}
                 onChange={handleChange}
               />
             </div>
             
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
                 Password
               </label>
-              <div className="mt-1 relative">
+              <div className="mt-2 relative">
                 <input
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
                   required
-                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                  autoComplete="new-password"
+                  className="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base transition-all"
                   value={formData.password}
                   onChange={handleChange}
+                  placeholder="Create a strong password"
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center touch-ripple"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeSlashIcon className="h-5 w-5 text-gray-400" />
+                    <EyeSlashIcon className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-colors" />
                   ) : (
-                    <EyeIcon className="h-5 w-5 text-gray-400" />
+                    <EyeIcon className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-colors" />
                   )}
                 </button>
               </div>
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700">
                 Confirm Password
               </label>
               <input
@@ -177,17 +184,19 @@ const Register: React.FC = () => {
                 name="confirmPassword"
                 type={showPassword ? 'text' : 'password'}
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                autoComplete="new-password"
+                className="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base transition-all"
                 value={formData.confirmPassword}
                 onChange={handleChange}
+                placeholder="Confirm your password"
               />
             </div>
 
             <div>
-              <label htmlFor="pin" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="pin" className="block text-sm font-semibold text-gray-700">
                 Transaction PIN (4 digits)
               </label>
-              <div className="mt-1 relative">
+              <div className="mt-2 relative">
                 <input
                   id="pin"
                   name="pin"
@@ -195,26 +204,29 @@ const Register: React.FC = () => {
                   required
                   maxLength={4}
                   pattern="\d{4}"
-                  className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                  inputMode="numeric"
+                  autoComplete="off"
+                  className="block w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base text-center text-lg font-mono transition-all"
                   value={formData.pin}
                   onChange={handleChange}
+                  placeholder="••••"
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center touch-ripple"
                   onClick={() => setShowPin(!showPin)}
                 >
                   {showPin ? (
-                    <EyeSlashIcon className="h-5 w-5 text-gray-400" />
+                    <EyeSlashIcon className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-colors" />
                   ) : (
-                    <EyeIcon className="h-5 w-5 text-gray-400" />
+                    <EyeIcon className="h-6 w-6 text-gray-400 hover:text-gray-600 transition-colors" />
                   )}
                 </button>
               </div>
             </div>
 
             <div>
-              <label htmlFor="confirmPin" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="confirmPin" className="block text-sm font-semibold text-gray-700">
                 Confirm PIN
               </label>
               <input
@@ -224,15 +236,18 @@ const Register: React.FC = () => {
                 required
                 maxLength={4}
                 pattern="\d{4}"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-mpesa-500 focus:border-mpesa-500"
+                inputMode="numeric"
+                autoComplete="off"
+                className="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-mpesa-500 focus:border-mpesa-500 text-base text-center text-lg font-mono transition-all"
                 value={formData.confirmPin}
                 onChange={handleChange}
+                placeholder="••••"
               />
             </div>
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-4 rounded-xl text-sm font-medium animate-slide-up">
               {error}
             </div>
           )}
@@ -241,16 +256,16 @@ const Register: React.FC = () => {
             <button
               type="submit"
               disabled={state.isLoading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-mpesa-600 hover:bg-mpesa-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mpesa-500 disabled:opacity-50"
+              className="group relative w-full flex justify-center py-4 px-4 border border-transparent text-base font-semibold rounded-xl text-white bg-mpesa-600 hover:bg-mpesa-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mpesa-500 disabled:opacity-50 transition-all duration-200 transform hover:scale-105 touch-ripple shadow-lg"
             >
               {state.isLoading ? 'Creating account...' : 'Create Account'}
             </button>
           </div>
 
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
+          <div className="text-center pt-4">
+            <p className="text-base text-gray-600">
               Already have an account?{' '}
-              <Link to="/login" className="font-medium text-mpesa-600 hover:text-mpesa-500">
+              <Link to="/login" className="font-semibold text-mpesa-600 hover:text-mpesa-700 transition-colors">
                 Sign in
               </Link>
             </p>

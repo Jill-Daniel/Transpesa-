@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import PinEntry from './PinEntry';
 import type { SavingsAccount } from '../types';
@@ -16,17 +16,12 @@ const SavingsAccountComponent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'deposit' | 'withdraw' | 'goals'>('overview');
   const { state } = useAuth();
 
-  useEffect(() => {
-    loadSavingsAccount();
-  }, []);
-
-  const loadSavingsAccount = () => {
+  const loadSavingsAccount = useCallback(() => {
     const existingSavings = JSON.parse(localStorage.getItem('savings') || '[]');
     const userSavings = existingSavings.find((s: SavingsAccount) => s.userId === state.user?.id);
     if (userSavings) {
       setSavings(userSavings);
     } else {
-      // Create new savings account for user
       const newSavings: SavingsAccount = {
         id: Date.now().toString(),
         userId: state.user!.id,
@@ -37,7 +32,11 @@ const SavingsAccountComponent: React.FC = () => {
       localStorage.setItem('savings', JSON.stringify(existingSavings));
       setSavings(newSavings);
     }
-  };
+  }, [state.user]);
+
+  useEffect(() => {
+    loadSavingsAccount();
+  }, [state.user?.id, loadSavingsAccount]);
 
   const handleDeposit = async (pin: string) => {
     if (pin !== state.user?.pin) {
